@@ -1,0 +1,1379 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Comforter&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-sans: 'Be Vietnam Pro', sans-serif;
+    --color-night: #050708;
+}
+
+:root {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: #f4eddd;
+    background: #050708;
+    font-synthesis: none
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent
+}
+
+button:disabled {
+    cursor: default
+}
+
+button:focus-visible {
+    outline: 2px solid #f8e7a5;
+    outline-offset: 6px
+}
+
+h1,
+h2,
+p {
+    margin-top: 0
+}
+
+::selection {
+    background: #b3719166
+}
+
+h1,
+h2 {
+    font-family: 'Lora', serif;
+    font-weight: 400
+}
+
+.night-garden {
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    min-height: 650px;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% -30%, #152127 0, transparent 63%), #050708;
+    isolation: isolate
+}
+
+.flower-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    cursor: crosshair;
+    touch-action: manipulation
+}
+
+.garden-vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+    background: linear-gradient(0deg, #050708d4, transparent 20%, transparent 74%, #05070866), radial-gradient(ellipse at 50% 65%, transparent 40%, #05070855)
+}
+
+.night-header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 30px 4%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    z-index: 7;
+    pointer-events: none
+}
+
+.garden-heading .night-eyebrow {
+    font-size: 9px;
+    letter-spacing: .22em;
+    color: #aaae9b
+}
+
+.garden-heading h1 {
+    font-size: 25px;
+    letter-spacing: -.02em;
+    margin: 12px 0 8px;
+    line-height: 1.4
+}
+
+.garden-heading h1 em {
+    color: #dbb9c5;
+    font-weight: 400
+}
+
+.garden-heading>p {
+    font-size: 10px;
+    color: #979c91;
+    letter-spacing: .07em;
+    margin-bottom: 0
+}
+
+.music {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    min-height: 44px;
+    border: 1px solid #d9d6bc30;
+    border-radius: 30px;
+    background: #11181888;
+    color: #cfcfb8;
+    font-size: 11px;
+    white-space: nowrap;
+    backdrop-filter: blur(8px)
+}
+
+.music>span:first-child {
+    font-size: 19px
+}
+
+.star-dust {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none
+}
+
+.star-dust i {
+    position: absolute;
+    border-radius: 50%;
+    background: #e6e6ab;
+    box-shadow: 0 0 10px 2px #dfdf9a55;
+    opacity: .6;
+    animation: twinkle 5s ease-in-out infinite alternate
+}
+
+.memory-sky {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 6
+}
+
+.sky-thread {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none
+}
+
+.sky-thread path {
+    fill: none;
+    stroke: #eddfb6;
+    stroke-width: .06;
+    stroke-dasharray: .15 .9;
+    opacity: .18
+}
+
+.keepsake-star {
+    position: absolute;
+    pointer-events: auto;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 68px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0;
+    color: #fff4c6;
+    animation: star-glow 4s ease-in-out infinite alternate
+}
+
+.star-shape {
+    font-size: 29px;
+    line-height: 1;
+    text-shadow: 0 0 10px #ffe7a3cc, 0 0 30px #d7c79366;
+    transition: transform .2s
+}
+
+.keepsake-star:hover .star-shape {
+    transform: scale(1.3)
+}
+
+.star-number {
+    font-size: 8px;
+    letter-spacing: .13em;
+    color: #d3cdb8;
+    opacity: .65;
+    margin-top: 9px
+}
+
+.keepsake-star.visited .star-number {
+    color: #efbacc
+}
+
+.keepsake-star.visited .star-shape {
+    color: #efc9dc
+}
+
+.plant-invitation {
+    position: absolute;
+    left: 50%;
+    top: 39%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 5;
+    pointer-events: none;
+    white-space: nowrap;
+    text-shadow: 0 2px 16px #000, 0 0 35px #000
+}
+
+.invitation-line {
+    display: block;
+    width: 30px;
+    height: 1px;
+    margin: 0 auto 12px;
+    background: #c7cda273
+}
+
+.plant-invitation p {
+    font-family: 'Comforter', cursive;
+    font-size: 38px;
+    color: #f2e8d3;
+    margin: 0 0 8px
+}
+
+.plant-invitation small {
+    font-size: 10px;
+    letter-spacing: .04em;
+    color: #afb3a0
+}
+
+.keepsake-gift-area {
+    position: absolute;
+    left: 50%;
+    bottom: 9%;
+    transform: translateX(-50%);
+    z-index: 8
+}
+
+.keepsake-gift {
+    position: relative;
+    background: none;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 20px 14px;
+    color: #ecdaca;
+    min-width: 220px;
+    filter: drop-shadow(0 7px 14px #000)
+}
+
+.gift-illustration {
+    position: relative;
+    display: block;
+    width: 155px;
+    aspect-ratio: 300 / 311;
+    margin: 5px 0 10px;
+    transition: transform .3s
+}
+
+.keepsake-gift:hover .gift-illustration {
+    transform: translateY(-6px)
+}
+
+.gift-body-image {
+    position: absolute;
+    width: 89.333333%;
+    height: auto;
+    left: 5.333333%;
+    bottom: 0;
+    user-select: none;
+    pointer-events: none;
+}
+
+.gift-lid-image {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transform-origin: 30% 80%;
+    user-select: none;
+    pointer-events: none;
+}
+
+.gift-aura {
+    position: absolute;
+    inset: -12px -30px;
+    background: radial-gradient(ellipse, #edaf7430, transparent 68%);
+    z-index: -1;
+    pointer-events: none
+}
+
+.gift-caption {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 15px;
+    margin-top: 3px;
+    line-height: 1.7
+}
+
+.keepsake-gift small {
+    font-size: 9px;
+    color: #aca78f;
+    letter-spacing: .07em;
+    margin-top: 4px
+}
+
+.night-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 18px 4%;
+    pointer-events: none
+}
+
+.garden-tools {
+    display: flex;
+    gap: 10px;
+    pointer-events: auto
+}
+
+.quiet-button {
+    border: 1px solid #b8c3a338;
+    border-radius: 5px;
+    background: #090f0cbc;
+    color: #d0d4be;
+    padding: 11px 15px;
+    min-height: 44px;
+    font-size: 10px;
+    backdrop-filter: blur(8px);
+    transition: background .2s
+}
+
+.quiet-button:hover {
+    background: #233126bf
+}
+
+.quiet-button span {
+    color: #dfb6d0;
+    margin-right: 5px;
+    font-size: 15px
+}
+
+.clear-button {
+    color: #9ca78f
+}
+
+.garden-count {
+    font-size: 9px;
+    letter-spacing: .08em;
+    color: #929b80
+}
+
+.night-storage-note {
+    position: absolute;
+    z-index: 8;
+    left: 20px;
+    right: 20px;
+    bottom: 67px;
+    text-align: center;
+    font-size: 10px;
+    color: #dec5a6;
+    pointer-events: none
+}
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #020405b8;
+    backdrop-filter: blur(10px);
+    overflow-y: auto
+}
+
+.modal-card {
+    position: relative;
+    width: min(540px, 100%);
+    max-height: calc(100dvh - 48px);
+    overflow-y: auto;
+    border-radius: 9px;
+    border: 1px solid #eee1c4;
+    background: #faf3e2;
+    color: #534d40;
+    box-shadow: 0 30px 100px #0008;
+    padding: 35px
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 0;
+    background: #f8f0dded;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    color: #817960;
+    font-size: 27px;
+    z-index: 3
+}
+
+.modal-card button:focus-visible {
+    outline-color: #9b5d7b
+}
+
+.wish-card {
+    text-align: left;
+    padding: 8px 5px 0
+}
+
+.card-flower {
+    display: block;
+    color: #b97c94;
+    font-size: 38px;
+    margin-bottom: 22px
+}
+
+.card-eyebrow {
+    display: block;
+    font-size: 8px;
+    letter-spacing: .19em;
+    color: #9a8f77;
+    margin-bottom: 18px
+}
+
+.wish-card h2 {
+    font-size: 31px;
+    line-height: 1.4;
+    color: #69533e;
+    margin-bottom: 26px
+}
+
+.card-recipient {
+    font-size: 12px;
+    line-height: 1.8;
+    color: #8a7861
+}
+
+.card-wish {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    line-height: 2.1;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    color: #6e6755
+}
+
+.card-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #7d8063;
+    background: #777c60;
+    color: #fffaf0;
+    border-radius: 5px;
+    padding: 13px 18px;
+    min-height: 46px;
+    font-size: 11px;
+    line-height: 1.6
+}
+
+.card-button:hover {
+    background: #656c52
+}
+
+.card-secondary {
+    border: 0;
+    background: transparent;
+    color: #8b745e;
+    font-size: 11px;
+    min-height: 44px;
+    padding: 10px 5px
+}
+
+.memory-card {
+    text-align: center;
+    padding-top: 5px
+}
+
+.memory-card h2 {
+    font-size: 26px;
+    line-height: 1.5;
+    margin-bottom: 14px
+}
+
+.memory-card>p {
+    font-size: 12px;
+    line-height: 2;
+    color: #8c816c
+}
+
+.memory-image,
+.memory-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    margin-bottom: 24px;
+    border-radius: 4px
+}
+
+.memory-placeholder {
+    background: radial-gradient(ellipse at top, #303d48, #17242d);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ebe0bd
+}
+
+.memory-placeholder>span {
+    font-size: 43px;
+    text-shadow: 0 0 30px #e6dabf66;
+    margin-bottom: 23px
+}
+
+.memory-placeholder>p {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 16px;
+    margin-bottom: 12px
+}
+
+.memory-placeholder>small {
+    font-size: 9px;
+    color: #a5adab
+}
+
+.memory-controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    border-top: 1px solid #d9cfb7;
+    padding-top: 12px;
+    margin-top: 24px
+}
+
+.clear-dialog {
+    text-align: center;
+    padding-top: 10px
+}
+
+.clear-dialog h2 {
+    font-size: 28px;
+    line-height: 1.5
+}
+
+.clear-dialog>p {
+    font-size: 13px;
+    line-height: 1.9;
+    color: #8d826d
+}
+
+.clear-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 24px
+}
+
+/* Pastel blossoms sit against a richer indigo sky, with readable accents. */
+.night-garden {
+    background: radial-gradient(ellipse at 52% -35%, #161e38 0, transparent 67%), radial-gradient(ellipse at 90% 65%, #25143135, transparent 52%), #020611
+}
+
+.garden-vignette {
+    background: linear-gradient(0deg, #02061170, transparent 13%, transparent 82%, #02061130), radial-gradient(ellipse at 50% 62%, transparent 55%, #01030a45)
+}
+
+.garden-heading .night-eyebrow {
+    color: #c6c0db
+}
+
+.garden-heading h1 {
+    color: #fff5ee
+}
+
+.garden-heading h1 em {
+    color: #f4bcd6
+}
+
+.garden-heading>p {
+    color: #c6bed2
+}
+
+.plant-invitation p {
+    color: #fff0f5;
+    text-shadow: 0 0 25px #d5a5dc33, 0 2px 12px #0b1120
+}
+
+.plant-invitation small {
+    color: #d2cde1
+}
+
+.invitation-line {
+    background: #ddc6f394
+}
+
+.music {
+    color: #f0ddeb;
+    background: #25263d99;
+    border-color: #cebde357
+}
+
+.quiet-button {
+    color: #eee1f6;
+    background: #22283be0;
+    border-color: #c5b1de66
+}
+
+.quiet-button:hover {
+    background: #383851
+}
+
+.quiet-button span {
+    color: #f6bbd6
+}
+
+.clear-button {
+    color: #d2c5dd
+}
+
+.garden-count {
+    color: #c6c7de
+}
+
+.gift-caption {
+    color: #ffdfed
+}
+
+.keepsake-gift small {
+    color: #dfcedd
+}
+
+.gift-aura {
+    background: radial-gradient(ellipse, #f3b6dc3d, transparent 68%)
+}
+
+.star-number {
+    color: #eee2f8;
+    opacity: .95
+}
+
+.sky-thread path {
+    stroke: #d9d5ff;
+    opacity: .32
+}
+
+.star-dust i {
+    background: #d8db31;
+    opacity: .8;
+    box-shadow: 0 0 5px 1px #fff1b6b0, 0 0 15px 3px #e4dbff50
+}
+
+.keepsake-star {
+    color: #e5e741;
+    animation-duration: 4.5s
+}
+
+.keepsake-star::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    width: 78px;
+    height: 78px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffefc51c 0, #d0c1ff0e 40%, transparent 70%);
+    pointer-events: none
+}
+
+.star-shape {
+    position: relative;
+    text-shadow: 0 0 4px #fffef5, 0 0 12px #ffe3a8, 0 0 27px #d4b6ffad, 0 0 45px #c8b7ff50;
+    animation: star-shimmer 6s ease-in-out infinite;
+    animation-delay: inherit
+}
+
+.star-shape::before,
+.star-shape::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, #fff8dacc, transparent);
+    box-shadow: 0 0 5px #fff0b977;
+    transform: translate(-50%, -50%);
+    animation: star-rays 6s ease-in-out infinite;
+    animation-delay: inherit
+}
+
+.star-shape::before {
+    width: 44px;
+    height: 1px
+}
+
+.star-shape::after {
+    width: 1px;
+    height: 44px;
+    background: linear-gradient(0deg, transparent, #fff8dacc, transparent)
+}
+
+.fireflies-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    overflow: hidden
+}
+
+.wandering-firefly {
+    position: absolute;
+    display: block;
+    animation: firefly-flight var(--flight-time) ease-in-out var(--flight-delay) infinite;
+    pointer-events: none
+}
+
+.firefly-core {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, #928a3d 0 28%, currentColor 75%);
+    opacity: .85;
+    box-shadow: 0 0 5px 2px currentColor, 0 0 13px 4px color-mix(in srgb, currentColor 65%, transparent), 0 0 26px 7px color-mix(in srgb, currentColor 18%, transparent);
+    animation: firefly-pulse var(--pulse-time) ease-in-out var(--pulse-delay) infinite
+}
+
+.wandering-firefly:nth-child(4n) .firefly-core::before,
+.wandering-firefly:nth-child(4n) .firefly-core::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(90deg, transparent, #fffef0, transparent);
+    opacity: .4;
+    animation: firefly-glint var(--pulse-time) ease-in-out var(--pulse-delay) infinite;
+    pointer-events: none
+}
+
+.wandering-firefly:nth-child(4n) .firefly-core::before {
+    width: 13px;
+    height: 1px
+}
+
+.wandering-firefly:nth-child(4n) .firefly-core::after {
+    width: 1px;
+    height: 13px;
+    background: linear-gradient(0deg, transparent, #fffef0, transparent)
+}
+
+.fireflies-layer.is-paused .wandering-firefly,
+.fireflies-layer.is-paused .firefly-core {
+    animation-play-state: paused
+}
+
+@keyframes firefly-flight {
+
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0)
+    }
+
+    25% {
+        transform: translate3d(calc(var(--flight-x) * .55), var(--flight-y), 0)
+    }
+
+    50% {
+        transform: translate3d(var(--flight-x), calc(var(--flight-y) * .35), 0)
+    }
+
+    75% {
+        transform: translate3d(calc(var(--flight-x) * -.3), calc(var(--flight-y) * -.2), 0)
+    }
+}
+
+@keyframes firefly-pulse {
+
+    0%,
+    100% {
+        opacity: .35;
+        transform: scale(.7)
+    }
+
+    35% {
+        opacity: .75;
+        transform: scale(1)
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.25)
+    }
+
+    70% {
+        opacity: .65;
+        transform: scale(.9)
+    }
+}
+
+@keyframes firefly-glint {
+
+    0%,
+    20%,
+    85%,
+    100% {
+        opacity: .05
+    }
+
+    45%,
+    60% {
+        opacity: .8
+    }
+}
+
+@keyframes star-shimmer {
+
+    0%,
+    100% {
+        opacity: .8
+    }
+
+    45%,
+    60% {
+        opacity: 1
+    }
+}
+
+@keyframes star-rays {
+
+    0%,
+    100% {
+        opacity: .2;
+        transform: translate(-50%, -50%) scale(.75)
+    }
+
+    45%,
+    60% {
+        opacity: .85;
+        transform: translate(-50%, -50%) scale(1.1)
+    }
+}
+
+@media(max-width:760px) {
+    .wandering-firefly:nth-child(n+25) {
+        display: none
+    }
+}
+
+@keyframes twinkle {
+    to {
+        opacity: .35;
+        transform: translateY(-4px)
+    }
+}
+
+@keyframes star-glow {
+
+    0%,
+    100% {
+        filter: brightness(.95)
+    }
+
+    50% {
+        filter: brightness(1.2)
+    }
+}
+
+@media(min-width:1500px) {
+    .garden-heading h1 {
+        font-size: 30px
+    }
+
+    .plant-invitation p {
+        font-size: 45px
+    }
+
+    .gift-illustration {
+        width: 175px
+    }
+}
+
+@media(max-width:760px) {
+    .night-garden {
+        min-height: 720px
+    }
+
+    .night-header {
+        padding: 23px 6%;
+        gap: 10px
+    }
+
+    .garden-heading {
+        max-width: 235px
+    }
+
+    .garden-heading h1 {
+        font-size: 22px;
+        line-height: 1.45;
+        margin: 9px 0
+    }
+
+    .garden-heading h1 em {
+        display: block
+    }
+
+    .garden-heading .night-eyebrow {
+        font-size: 7px;
+        letter-spacing: .13em
+    }
+
+    .garden-heading>p {
+        font-size: 9px;
+        max-width: 210px;
+        overflow-wrap: anywhere
+    }
+
+    .music {
+        padding: 8px 10px;
+        font-size: 9px;
+        gap: 6px
+    }
+
+    .star-number {
+        font-size: 8px
+    }
+
+    .keepsake-star {
+        width: 48px;
+        height: 60px
+    }
+
+    .star-shape {
+        font-size: 25px
+    }
+
+    .keepsake-star:nth-of-type(1) {
+        top: 24% !important;
+        left: 12% !important
+    }
+
+    .keepsake-star:nth-of-type(2) {
+        top: 21% !important;
+        left: 33% !important
+    }
+
+    .keepsake-star:nth-of-type(3) {
+        top: 29% !important;
+        left: 47% !important
+    }
+
+    .keepsake-star:nth-of-type(4) {
+        top: 23% !important;
+        left: 67% !important
+    }
+
+    .keepsake-star:nth-of-type(5) {
+        top: 33% !important;
+        left: 76% !important
+    }
+
+    .keepsake-star:nth-of-type(6) {
+        top: 23% !important;
+        left: 90% !important
+    }
+
+    .sky-thread {
+        display: none
+    }
+
+    .plant-invitation {
+        top: 40%;
+        width: 100%;
+        white-space: normal;
+        padding: 0 15px
+    }
+
+    .plant-invitation p {
+        font-size: 34px
+    }
+
+    .plant-invitation small {
+        font-size: 9px
+    }
+
+    .keepsake-gift-area {
+        bottom: 12%
+    }
+
+    .gift-illustration {
+        width: 130px
+    }
+
+    .keepsake-gift {
+        min-width: 210px
+    }
+
+    .gift-caption {
+        font-size: 14px
+    }
+
+    .night-footer {
+        padding: 16px 5%;
+        align-items: flex-end;
+        gap: 8px
+    }
+
+    .garden-tools {
+        gap: 6px
+    }
+
+    .quiet-button {
+        padding: 10px;
+        font-size: 9px
+    }
+
+    .garden-count {
+        font-size: 8px;
+        max-width: 70px;
+        text-align: right;
+        line-height: 1.8
+    }
+
+    .modal-backdrop {
+        padding: 16px
+    }
+
+    .modal-card {
+        padding: 28px 24px;
+        max-height: calc(100dvh - 32px)
+    }
+
+    .wish-card {
+        padding: 8px 0
+    }
+
+    .wish-card h2 {
+        font-size: 27px
+    }
+
+    .card-wish {
+        font-size: 15px
+    }
+
+    .memory-card h2 {
+        font-size: 23px
+    }
+
+    .memory-controls .card-secondary {
+        font-size: 10px
+    }
+
+    .clear-actions {
+        flex-wrap: wrap;
+        gap: 10px
+    }
+
+    .night-storage-note {
+        bottom: 70px
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    *,
+    *:before,
+    *:after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important
+    }
+}
+
+/* Album kỷ niệm: ảnh ở trên, lời nhắn ở dưới. */
+.modal-memory {
+    width: min(600px, 100%);
+    padding: 0;
+    border: 1px solid #fff8ff;
+    border-radius: 26px;
+    background: #fffbfe;
+    box-shadow: 0 24px 90px #08071766, 0 0 0 5px #ffffff0a;
+}
+.modal-memory .close, .modal-wish .close {
+    position: sticky;
+    display: block;
+    float: right;
+    top: 12px;
+    right: 12px;
+    margin: 12px 12px -52px 0;
+    background: #ffffffee;
+    color: #806582;
+    box-shadow: 0 2px 12px #86729615;
+}
+.modal-memory .memory-card { padding: 0; }
+.memory-album {
+    background: radial-gradient(ellipse at 5% 10%, #fce1e9, transparent 65%), linear-gradient(135deg, #f5ebff, #eaf5f1);
+    padding: 22px 24px 18px;
+    border-radius: 25px 25px 18px 18px;
+    overflow: hidden;
+}
+.album-topline { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-right: 44px; margin-bottom: 19px; }
+.album-topline > span:first-child { font-family: 'Comforter', cursive; font-size: 25px; color: #a37d98; }
+.album-count { font-size: 10px; color: #8f7195; letter-spacing: .08em; background: #ffffffa8; padding: 6px 10px; border-radius: 20px; white-space: nowrap; }
+.album-stage { position: relative; padding: 8px 0 4px; }
+.album-photo-stack { position: relative; width: min(68%, 282px); margin: auto; isolation: isolate; }
+.album-paper-back { position: absolute; inset: 5px -5px 0; transform: rotate(5deg); border: 6px solid white; background: #e2cfee; border-radius: 8px; box-shadow: 0 8px 18px #ad8ca027; z-index: -1; }
+.album-photo-frame { position: relative; padding: 8px 8px 4px; background: #fff; border-radius: 7px; box-shadow: 0 8px 23px #967c9d26; }
+.album-tape { position: absolute; z-index: 1; left: calc(50% - 42px); top: -10px; width: 84px; height: 23px; background: #f5dfb8b8; transform: rotate(-4deg); clip-path: polygon(2% 0, 100% 3%, 97% 98%, 0 94%); }
+.album-photo { display: block; width: 100%; height: 250px; object-fit: contain; border-radius: 3px; background: #faf5f2; }
+.album-print-label { display: block; font-family: 'Comforter', cursive; color: #ac8d9f; font-size: 21px; padding: 5px 0 3px; }
+.album-sparkle { position: absolute; pointer-events: none; color: #bc96c5; }
+.sparkle-one { top: 13%; left: 5%; font-size: 37px; transform: rotate(-13deg); }
+.sparkle-two { bottom: 12%; right: 3%; font-size: 28px; color: #d4a28d; }
+.album-arrow { position: absolute; top: 43%; width: 40px; height: 40px; border: 1px solid #fff; border-radius: 50%; background: #ffffffd9; color: #92749c; font-size: 29px; line-height: 1; box-shadow: 0 3px 10px #947d9b12; }
+.album-prev { left: 0; }.album-next { right: 0; }
+.album-arrow:hover { background: #fff; color: #705079; }
+.album-thumbnail-row { display: flex; justify-content: flex-start; gap: 9px; max-width: 100%; padding: 11px 5px 2px; overflow-x: auto; }
+.album-thumbnail { flex: 0 0 43px; height: 53px; border: 2px solid #fff; border-radius: 9px; padding: 2px; background: #ffffffc7; opacity: .7; }
+.album-thumbnail img { width: 100%; height: 100%; object-fit: cover; border-radius: 5px; }
+.album-thumbnail.selected { opacity: 1; border-color: #b78eb6; box-shadow: 0 0 0 3px #ffffffb3; }
+.album-thumbnail:first-child { margin-left: auto; }.album-thumbnail:last-child { margin-right: auto; }
+.album-placeholder { height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; background: #f3edf8; color: #a18aa9; border-radius: 5px; }
+.album-placeholder > span { font-size: 36px; }.album-placeholder p { font-family: 'Lora', serif; font-size: 14px; line-height: 1.6; margin: 20px 0 10px; }.album-placeholder small { font-size: 9px; line-height: 1.8; }
+.memory-copy { padding: 25px 30px 18px; text-align: left; }
+.memory-copy .card-eyebrow { display: flex; align-items: center; gap: 7px; color: #ac839f; font-size: 8px; letter-spacing: .15em; margin-bottom: 10px; }
+.memory-copy h2 { color: #705a78; font-size: 27px; line-height: 1.45; margin-bottom: 12px; }
+.memory-caption { font-size: 13px; line-height: 1.95; white-space: pre-wrap; color: #7b687f; overflow-wrap: anywhere; }
+.memory-copy .memory-controls { border-color: #eee2ee; margin-top: 20px; padding-top: 8px; }
+.memory-copy .card-secondary { color: #a37f9d; }
+/* Thiệp lời chúc pastel hiện đại. */
+.modal-wish {
+    padding: 0;
+    width: min(540px, 100%);
+    border: 1px solid #fff;
+    border-radius: 27px;
+    background: radial-gradient(ellipse at 100% 0, #e9e0fb, transparent 50%), radial-gradient(ellipse at 0 100%, #e5f3ed, transparent 50%), #fff5f7;
+    box-shadow: 0 24px 90px #08071766, 0 0 0 5px #ffffff0c;
+}
+.modal-wish .wish-card { position: relative; padding: 35px 34px 30px; }
+.modal-wish .card-flower { display: grid; place-items: center; width: 66px; height: 66px; background: #f0dfea; color: #c793b4; border: 5px solid #ffffffb0; border-radius: 23px; font-size: 37px; transform: rotate(-7deg); margin: 0 0 24px; box-shadow: 0 4px 15px #b891a514; }
+.modal-wish .card-eyebrow { color: #b28ca9; font-size: 8px; letter-spacing: .16em; margin-bottom: 13px; }
+.modal-wish h2 { color: #83618b; font-size: 32px; line-height: 1.4; margin-bottom: 23px; }
+.modal-wish .card-recipient { color: #b289a0; font-size: 12px; }
+.modal-wish .card-wish { font-family: 'Be Vietnam Pro', sans-serif; color: #77627c; font-size: 13px; line-height: 2.15; }
+.modal-wish .card-button { width: 100%; margin-top:24px; background: #e9dcf0; border: 1px solid #e3d1ed; color: #705079; border-radius: 13px; font-size: 11px; padding: 13px 18px; }
+.modal-wish .card-button:hover { background: #decae8; }
+@media(max-width:760px) {
+    .modal-memory, .modal-wish { max-height: calc(100dvh - 28px); }
+    .memory-album { padding: 19px 16px 15px; }
+    .album-topline { gap: 7px; padding-right: 35px; margin-bottom: 16px; }
+    .album-topline > span:first-child { font-size: 21px; }
+    .album-count { font-size: 8px; padding: 5px 7px; }
+    .album-photo-stack { width: 73%; }.album-photo { height: 246px; }
+    .album-print-label { font-size: 19px; }.album-arrow { width: 33px; height: 33px; font-size: 26px; }
+    .sparkle-one { left: 1%; font-size: 25px; }.sparkle-two { right: 0; font-size: 23px; }
+    .memory-copy { padding: 22px 23px 14px; }.memory-copy h2 { font-size: 24px; }
+    .memory-caption { font-size: 12px; }.memory-copy .card-secondary { font-size: 9px; }
+    .modal-wish .wish-card { padding: 30px 25px 25px; }.modal-wish h2 { font-size: 28px; }
+}
+
+
+/* 16 nhóm kỷ niệm: màu và họa tiết đặt trong src/memoryThemes.ts. */
+.memory-card .memory-album { background: radial-gradient(ellipse at 5% 10%,var(--memory-start),transparent 68%),linear-gradient(135deg,var(--memory-start),var(--memory-end)); }
+.memory-card .memory-copy { background: linear-gradient(135deg,#ffffff,var(--memory-end)); border-radius:0 0 24px 24px; }
+.memory-card .album-paper-back { background:var(--memory-back); }
+.memory-card .album-topline>span:first-child,.memory-card .album-print-label,.memory-card .album-sparkle,.memory-card .album-count,.memory-card .album-arrow,.memory-card .memory-copy h2,.memory-card .memory-copy .card-eyebrow,.memory-card .card-secondary { color:var(--memory-accent); }
+.memory-card .album-thumbnail.selected { border-color:var(--memory-accent); }
+.memory-card .album-tape { background:color-mix(in srgb,var(--memory-back) 75%,#fff6dc); }
+.memory-card .memory-caption { color:color-mix(in srgb,var(--memory-accent) 70%,#403b4a); }
+.memory-ornament { width:100%;height:100%;overflow:visible; }
+.memory-card .sparkle-one { width:44px;height:44px;left:3%;top:14%;transform:rotate(-12deg); }
+.memory-card .sparkle-two { width:33px;height:33px;right:2%;bottom:12%;transform:rotate(15deg); }
+.memory-card .album-arrow { width:44px;height:44px; }
+/* Mỗi thẻ có bố cục trang trí riêng, bên cạnh bảng màu riêng. */
+.memory-design-0 .album-tape { border-radius:3px 3px 40% 40%; }
+.memory-design-1 .album-paper-back { transform:rotate(-6deg);border-radius:35% 6px 6px 6px; }
+.memory-design-1 .album-photo-frame { border-radius:35% 6px 6px 6px; }
+.memory-design-1 .album-tape { left:12px;top:10px;width:55px;transform:rotate(-35deg); }
+.memory-design-2 .memory-album { background-image:radial-gradient(#fff9 1px,transparent 1px),linear-gradient(135deg,var(--memory-start),var(--memory-end));background-size:19px 19px,100% 100%; }
+.memory-design-2 .album-tape { clip-path:polygon(0 0,100% 0,90% 50%,100% 100%,0 100%,10% 50%); }
+.memory-design-3 .album-photo-frame { border-radius:20px;border:1px dashed var(--memory-accent); }
+.memory-design-3 .album-tape { display:none; }.memory-design-3 .sparkle-two { width:47px;height:47px; }
+.memory-design-4 .album-paper-back { border-radius:80px 80px 8px 8px;transform:rotate(-4deg); }
+.memory-design-4 .album-photo-frame { border-radius:80px 80px 8px 8px;padding-top:16px; }
+.memory-design-4 .album-photo { border-radius:65px 65px 3px 3px; }
+.memory-design-5 .memory-album { background-image:repeating-linear-gradient(115deg,#ffffff25 0 12px,transparent 12px 24px),linear-gradient(135deg,var(--memory-start),var(--memory-end)); }
+.memory-design-5 .album-photo-frame { border-radius:10px;border-bottom:5px solid var(--memory-back); }
+.memory-design-6 .album-tape { display:none; }.memory-design-6 .album-photo-frame { border-radius:80px 80px 12px 12px; }
+.memory-design-6 .album-photo { border-radius:70px 70px 4px 4px; }.memory-design-6 .album-paper-back { transform:rotate(3deg);border-radius:80px 80px 12px 12px; }
+.memory-design-7 .album-paper-back { transform:rotate(-7deg);background:linear-gradient(25deg,var(--memory-back),#fff); }
+.memory-design-7 .album-tape { width:35px;height:35px;left:calc(50% - 17px);top:-12px;border-radius:50%;clip-path:none; }
+.memory-design-8 .album-photo-frame { border:2px solid var(--memory-back);box-shadow:0 0 0 5px #fff7,0 8px 23px #967c9d26; }
+.memory-design-8 .album-paper-back { transform:rotate(7deg); }.memory-design-8 .album-tape { transform:rotate(8deg); }
+.memory-design-9 .album-tape { width:24px;height:42px;left:calc(100% - 41px);top:-2px;transform:none;clip-path:polygon(0 0,100% 0,100% 100%,50% 75%,0 100%); }
+.memory-design-9 .album-photo-frame { border-radius:12px 12px 6px 6px; }
+.memory-design-10 .album-paper-back { transform:rotate(-5deg);background:repeating-linear-gradient(0deg,var(--memory-back) 0 15px,#ffffff90 15px 16px); }
+.memory-design-10 .album-tape { top:auto;bottom:4px;left:-12px;width:62px;transform:rotate(34deg); }
+.memory-design-11 .memory-album { background-image:radial-gradient(ellipse at 50% 50%,#fff9,transparent 56%),linear-gradient(135deg,var(--memory-start),var(--memory-end)); }
+.memory-design-11 .album-paper-back { transform:rotate(3deg);border-radius:45% 45% 6px 6px; }
+.memory-design-12 .album-photo-frame { outline:2px dotted var(--memory-accent);outline-offset:4px;border-radius:13px; }
+.memory-design-12 .album-tape { display:none; }.memory-design-12 .album-paper-back { transform:rotate(-3deg); }
+.memory-design-13 .album-photo-frame { border:5px dotted var(--memory-back);border-radius:3px;padding:5px; }
+.memory-design-13 .album-tape { display:none; }.memory-design-13 .album-paper-back { transform:rotate(5deg);border-style:dashed; }
+.memory-design-14 .memory-album { background-image:radial-gradient(#ffffff99 2px,transparent 2px),linear-gradient(135deg,var(--memory-start),var(--memory-end));background-size:29px 29px,100% 100%; }
+.memory-design-14 .album-tape { transform:rotate(12deg); }.memory-design-14 .album-photo-frame { border-radius:8px 22px 8px 22px; }
+.memory-design-15 .album-photo-frame { border-radius:22px 5px 22px 5px;border:1px solid var(--memory-back); }
+.memory-design-15 .album-tape { clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);width:36px;height:32px;left:calc(50% - 18px);top:-12px; }
+/* Sao sáng rõ cả ở nhịp dịu nhất; giữ vùng chạm đủ lớn. */
+.memory-sky .keepsake-star:nth-of-type(n) { left:var(--star-x)!important;top:var(--star-y)!important;color:#fffef1;filter:brightness(1.5); }
+.memory-sky .star-shape { font-size:30px;opacity:1;text-shadow:0 0 2px #fff,0 0 7px #fffad5,0 0 16px #ffdf83,0 0 30px #cebcffb8; }
+.memory-sky .star-number { color:#fff4d9;opacity:1;font-size:9px;text-shadow:0 0 6px #fff3ae88; }
+.memory-sky .keepsake-star.visited .star-shape { color:#fff2fc; }
+.memory-sky .keepsake-star::before { width:65px;height:65px;background:radial-gradient(circle,#fff4c531,transparent 68%); }
+.memory-sky .star-shape::before { width:36px; }.memory-sky .star-shape::after { height:36px; }
+.plant-invitation { top:48%;background:radial-gradient(ellipse,#020611b0,transparent 72%);padding:12px 24px;border-radius:40%; }
+.plant-invitation small { display:inline-block;background:#020611bb;border-radius:18px;padding:6px 10px; }
+@keyframes star-glow { 0%,100%{filter:brightness(1.4)}50%{filter:brightness(1.75)} }
+@keyframes star-shimmer { 0%,100%{opacity:.95}45%,60%{opacity:1} }
+@media(max-width:760px) {
+    .memory-sky .keepsake-star:nth-of-type(n) { left:var(--star-mobile-x)!important;top:var(--star-mobile-y)!important;width:48px;height:50px; }
+    .memory-sky .star-shape { font-size:25px; }.memory-sky .star-number { font-size:8px;margin-top:6px; }
+    .memory-sky .keepsake-star::before { width:54px;height:54px; }.memory-sky .star-shape::before { width:29px; }.memory-sky .star-shape::after { height:29px; }
+    .plant-invitation { top:50%;padding:10px 15px; }.plant-invitation p { font-size:30px;margin-bottom:4px; }.plant-invitation small { font-size:8px; }
+    .memory-card .sparkle-one { width:31px;height:31px;left:0; }.memory-card .sparkle-two { width:26px;height:26px;right:0; }
+    .memory-card .album-arrow { width:40px;height:44px; }
+}
+
+/* Bầu trời sao trải rộng, so le nhẹ; vị trí nằm trong MemorySky.tsx. */
+.memory-sky .keepsake-star:nth-of-type(n) { width:48px;height:54px;padding:0; }
+.memory-sky .star-shape { font-size:var(--star-size, 29px); }
+.memory-sky .sky-thread path {
+    stroke:#e8d5f3;stroke-width:1;stroke-dasharray:1 8;
+    stroke-linecap:round;opacity:.22;
+}
+.plant-invitation { left:50%;top:51%;width:min(90%,600px);padding:12px 20px; }
+.plant-invitation p { font-size:clamp(30px,3.1vw,42px);white-space:normal;line-height:1.4; }
+@media(max-width:760px) {
+    .night-garden { min-height:900px; }
+    .memory-sky .keepsake-star:nth-of-type(n) { width:44px;height:48px; }
+    .memory-sky .star-shape { font-size:calc(var(--star-size, 29px) - 4px); }
+    .plant-invitation { top:61%;width:100%;padding:12px 15px; }
+    .plant-invitation p { font-size:30px; }
+}
+
+/* Những kỷ niệm đã ghé và lời nhắn sau cùng. */
+.star-visited-heart { position:absolute;bottom:-3px;left:50%;transform:translateX(-50%);font-size:10px;line-height:1;color:#ffbcd8;text-shadow:0 0 7px #fcaedb; }
+.memory-sky .keepsake-star.visited .star-shape { color:#ffe0ef;text-shadow:0 0 3px #fff,0 0 12px #ffd4e8,0 0 25px #efacd4a6; }
+.memory-progress { margin-top:9px;color:#e2c8e0;font-family:'Be Vietnam Pro',sans-serif;white-space:normal; }
+.memory-progress>span { display:inline-flex;gap:6px;align-items:center;font-size:10px;letter-spacing:.025em;border:1px solid #eed8f326;border-radius:20px;background:#101226b8;padding:6px 12px; }
+.memory-progress>span>span { color:#f6b9d7;font-size:15px; }
+.plant-invitation .completion-message { max-width:500px;margin:10px auto 0;padding:8px 15px;border:1px solid #f6d5e52b;border-radius:16px;background:#0b1023ed;font-family:'Lora',serif;font-size:13px;line-height:1.7;color:#ffe2ee;box-shadow:0 5px 24px #0003; }
+.completion-message>span { display:block;margin-top:3px;font-family:'Be Vietnam Pro',sans-serif;font-size:9px;color:#d6c2da; }
+.plant-invitation:has(.memory-progress.complete) { top:52%; }
+.plant-invitation:has(.memory-progress.complete)>.invitation-line,
+.plant-invitation:has(.memory-progress.complete)>p,
+.plant-invitation:has(.memory-progress.complete)>small { display:none; }
+.gift-complete .gift-aura { background:radial-gradient(ellipse,#ffdcad70,#e8b7ec2e 44%,transparent 72%);animation:gift-celebrate 3.8s ease-in-out infinite; }
+.gift-complete .gift-illustration { filter:drop-shadow(0 0 13px #ffe4b966); }
+@keyframes gift-celebrate { 0%,100% { opacity:.65;transform:scale(.96); } 50% { opacity:1;transform:scale(1.08); } }
+
+/* Chạm ảnh để xem lớn, vuốt ngang để chuyển ảnh. */
+.album-photo-button { display:block;position:relative;width:100%;border:0;padding:0;background:transparent;cursor:zoom-in;touch-action:pan-y pinch-zoom;border-radius:inherit; }
+.album-photo-button .album-photo { display:block; }
+.photo-expand-cue { position:absolute;right:8px;bottom:8px;display:grid;place-items:center;width:29px;height:29px;border:1px solid #fff9;border-radius:50%;background:#fffdefdc;color:#795e85;font-size:23px;box-shadow:0 2px 8px #0002;pointer-events:none; }
+.album-gesture-hint { text-align:center;font-family:'Be Vietnam Pro',sans-serif;font-size:9px;letter-spacing:.02em;color:#846c8b;margin:13px 0 0; }
+.photo-backdrop { z-index:50;background:#030611ed;backdrop-filter:blur(16px); }
+.modal-photo { width:min(1080px,100%);max-height:calc(100dvh - 32px);padding:22px 20px 14px;border:1px solid #eedcf22b;border-radius:22px;background:#101326;color:#f7e8f4;box-shadow:0 24px 90px #0008; }
+.modal-photo .close { top:12px;right:12px;background:#f8edf8;color:#785f83; }
+.photo-viewer header { padding:0 50px 12px 0;text-align:left; }
+.photo-viewer header>span { font-family:'Comforter',cursive;font-size:24px;color:#ebc9e2; }
+.photo-viewer h2 { margin:5px 0 0;font-family:'Be Vietnam Pro',sans-serif;font-size:12px;font-weight:400;line-height:1.5;color:#d4c8e0; }
+.photo-viewer-stage { display:grid;place-items:center;min-height:140px;touch-action:pan-y pinch-zoom; }
+.photo-viewer-stage>img { display:block;width:100%;height:min(65dvh,680px);object-fit:contain;border-radius:7px;user-select:none; }
+.photo-viewer-stage>p { padding:45px 20px;text-align:center;font-size:13px;color:#e6d7ea; }
+.photo-viewer footer { display:flex;align-items:center;justify-content:center;gap:24px;margin-top:12px; }
+.photo-viewer footer>button { display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid #ead3ec52;border-radius:50%;background:#f1dbf318;color:#fff0fa;font-size:28px; }
+.photo-viewer footer>button:disabled { opacity:.25;cursor:default; }
+.photo-viewer footer>span { min-width:60px;text-align:center;font-size:11px;letter-spacing:.08em; }
+.photo-viewer-hint { margin:8px 0 0;text-align:center;font-size:9px;color:#c5b4cf; }
+
+.music-controls { display:flex;flex-direction:column;align-items:flex-end;gap:9px;flex-shrink:0; }
+.music-volume { display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #f3e2fc26;border-radius:20px;background:#151628cc;color:#e3d5e8;font-size:9px; }
+.music-volume input { width:72px;height:24px;accent-color:#efbdd6;cursor:pointer; }
+.music-volume output { min-width:26px;text-align:right;font-variant-numeric:tabular-nums; }
+@media(max-width:760px) {
+    .music-controls { gap:6px; }
+    .music-volume { gap:4px;padding:6px 7px;font-size:8px; }
+    .music-volume>span { position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%); }
+    .music-volume input { width:62px; }
+    .music-volume output { min-width:25px; }
+    .memory-progress>span { font-size:9px;padding:5px 10px; }
+    .plant-invitation { top:56%; }
+    .plant-invitation:has(.memory-progress.complete) { top:55%; }
+    .plant-invitation .completion-message { max-width:330px;font-size:12px;padding:8px 12px; }
+    .completion-message>span { font-size:8px; }
+    .photo-backdrop { padding:10px; }
+    .modal-photo { max-height:calc(100dvh - 20px);padding:18px 12px 12px;border-radius:18px; }
+    .photo-viewer header>span { font-size:22px; }
+    .photo-viewer-stage>img { height:62dvh; }
+    .photo-viewer h2 { font-size:10px; }
+    .photo-viewer-hint { font-size:8px;line-height:1.6; }
+}
+@media(prefers-reduced-motion:reduce) { .gift-complete .gift-aura { animation:none; } }
+
+/* Thông báo dọn vườn đồng bộ với bảng màu pastel của thiệp. */
+.modal-clear {
+    width:min(540px,100%);
+    padding:32px;
+    border:1px solid #fff;
+    border-radius:27px;
+    background:radial-gradient(ellipse at 100% 0,#e9e0fb,transparent 55%),radial-gradient(ellipse at 0 100%,#e5f3ed,transparent 55%),#fff5f7;
+    box-shadow:0 24px 90px #08071766,0 0 0 5px #ffffff0c;
+}
+.modal-clear .close { background:#ffffffd9;color:#9b809e; }
+.modal-clear .clear-dialog { padding:5px 0 0; }
+.modal-clear .card-flower {
+    display:grid;place-items:center;width:62px;height:62px;margin:0 auto 22px;
+    border:5px solid #ffffffb0;border-radius:22px;
+    background:#f0dfea;color:#c793b4;font-size:34px;transform:rotate(-7deg);
+    box-shadow:0 4px 15px #b891a514;
+}
+.modal-clear .clear-dialog h2 { color:#806189;font-size:28px;line-height:1.45; }
+.modal-clear .clear-dialog>p { color:#7b687f;font-size:13px;line-height:1.95; }
+.modal-clear .clear-actions { gap:12px;margin-top:24px; }
+.modal-clear .card-button { background:#e9dcf0;border:1px solid #dfcbe9;color:#705079;border-radius:13px; }
+.modal-clear .card-button:hover { background:#decae8; }
+.modal-clear .card-secondary { border:1px solid #e8dce9;border-radius:13px;background:#ffffff91;color:#94749b;padding:12px 16px; }
+.modal-clear .card-secondary:hover { background:#fff; }
+@media(max-width:760px) {
+    .modal-clear { padding:29px 23px 24px;max-height:calc(100dvh - 28px); }
+    .modal-clear .clear-dialog h2 { font-size:24px; }
+    .modal-clear .clear-dialog>p { font-size:12px; }
+    .modal-clear .clear-actions { gap:10px; }
+    .modal-clear .clear-actions>button { width:100%; }
+}

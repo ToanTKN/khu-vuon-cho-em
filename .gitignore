@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.local
+.openai/sites-runtime/
+*.tar
+*.tsbuildinfo
+*-preview.png
+source-images/
+
+.tools/
+source-media/
