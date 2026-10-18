@@ -7,6 +7,7 @@ import { Fireflies } from './components/Fireflies';
 import { KeepsakeGift } from './components/KeepsakeGift';
 import { Modal } from './components/Modal';
 import { Music } from './components/Music';
+import { TypewriterWish } from './components/TypewriterWish';
 
 import type { MusicMotion } from './musicMotion';
 import { readVisited } from './memoryProgress';
@@ -90,7 +91,7 @@ export default function App() {
         <div className="card-flower" aria-hidden="true">♥</div>
         <span className="card-eyebrow">MỘT TẤM THIỆP · {config.giftDate}</span>
         <h2>{personal(config.cardTitle)}</h2><p className="card-recipient">Gửi {config.recipient},</p>
-        <p className="card-wish">{personal(config.wish)}</p>
+        <TypewriterWish text={personal(config.wish)} />
         <button className="card-button" onClick={closeGift}>Cất thiệp, trở về khu vườn</button>
       </motion.article>
     </Modal>}
