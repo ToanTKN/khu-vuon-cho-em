@@ -5,11 +5,10 @@ export function TypewriterWish({ text }: { text: string }) {
   const reducedMotion = useReducedMotion();
   const letters = Array.from(text);
   const [count, setCount] = useState(0);
-  const [skipped, setSkipped] = useState(false);
-  const complete = Boolean(reducedMotion) || skipped || count >= letters.length;
+  const complete = Boolean(reducedMotion) || count >= letters.length;
 
   useEffect(() => {
-    if (reducedMotion || skipped) return;
+    if (reducedMotion) return;
     let frame: number;
     let started: number | undefined;
     const length = Array.from(text).length;
@@ -21,14 +20,9 @@ export function TypewriterWish({ text }: { text: string }) {
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [text, reducedMotion, skipped]);
+  }, [text, reducedMotion]);
 
   return <div className="wish-reveal">
-    <div className="wish-reveal-tools">
-      {!complete && <button type="button" className="wish-reveal-skip" onClick={() => setSkipped(true)}>
-        Hiện toàn bộ lời chúc ♡
-      </button>}
-    </div>
     <div className="wish-reveal-body">
       <p className="card-wish wish-layout" aria-hidden="true">{text}</p>
       <p className="card-wish wish-animated" aria-hidden="true">

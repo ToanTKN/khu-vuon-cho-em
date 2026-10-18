@@ -1174,20 +1174,21 @@ h2 {
 /* Thiệp lời chúc pastel hiện đại. */
 .modal-wish {
     padding: 0;
-    width: min(540px, 100%);
+    width: min(600px, 100%);
     border: 1px solid #fff;
     border-radius: 27px;
-    background: radial-gradient(ellipse at 100% 0, #e9e0fb, transparent 50%), radial-gradient(ellipse at 0 100%, #e5f3ed, transparent 50%), #fff5f7;
+    background: radial-gradient(ellipse at 100% 0, #e9e0f8, transparent 55%), radial-gradient(ellipse at 0 100%, #f8dfe8, transparent 55%), #fffaf7;
     box-shadow: 0 24px 90px #08071766, 0 0 0 5px #ffffff0c;
 }
-.modal-wish .wish-card { position: relative; padding: 35px 34px 30px; }
-.modal-wish .card-flower { display: grid; place-items: center; width: 66px; height: 66px; background: #f0dfea; color: #c793b4; border: 5px solid #ffffffb0; border-radius: 23px; font-size: 37px; transform: rotate(-7deg); margin: 0 0 24px; box-shadow: 0 4px 15px #b891a514; }
-.modal-wish .card-eyebrow { color: #b28ca9; font-size: 8px; letter-spacing: .16em; margin-bottom: 13px; }
-.modal-wish h2 { color: #83618b; font-size: 32px; line-height: 1.4; margin-bottom: 23px; }
-.modal-wish .card-recipient { color: #b289a0; font-size: 12px; }
-.modal-wish .card-wish { font-family: 'Be Vietnam Pro', sans-serif; color: #77627c; font-size: 13px; line-height: 2.15; }
-.modal-wish .card-button { width: 100%; margin-top:24px; background: #e9dcf0; border: 1px solid #e3d1ed; color: #705079; border-radius: 13px; font-size: 11px; padding: 13px 18px; }
-.modal-wish .card-button:hover { background: #decae8; }
+.modal-wish .wish-card { position: relative; padding: 28px 40px 28px;isolation:isolate; }
+.modal-wish .wish-card::before { content:'';position:absolute;inset:12px;border:1px dashed #d9b9cd;border-radius:19px;pointer-events:none;z-index:-1; }
+.modal-wish .card-flower { display:grid;place-items:center;width:44px;height:44px;background:#f3dfea;color:#c081a3;border:3px solid #fff9;border-radius:50%;font-size:23px;transform:rotate(-8deg);margin:0 auto 13px;box-shadow:0 4px 14px #b891a51c; }
+.modal-wish .card-eyebrow { display:block;text-align:center;color:#a77c99;font-size:9px;letter-spacing:.15em;margin-bottom:13px; }
+.modal-wish h2 { color:#805c83;font-size:27px;line-height:1.45;text-align:center;text-wrap:balance;margin:0 auto 22px;max-width:440px; }
+.modal-wish .card-recipient { color:#a36587;font-family:'Lora',serif;font-style:italic;font-size:16px;margin:0 0 13px; }
+.modal-wish .card-wish { font-family:'Be Vietnam Pro',sans-serif;color:#69576e;font-size:13px;line-height:2; }
+.modal-wish .card-button { display:block;width:auto;min-height:40px;margin:22px auto 0;background:#fff8;border:1px solid #dfc8dc;color:#8b668e;border-radius:24px;font-size:11px;padding:10px 22px; }
+.modal-wish .card-button:hover { background:#efdfef; }
 @media(max-width:760px) {
     .modal-memory, .modal-wish { max-height: calc(100dvh - 28px); }
     .memory-album { padding: 19px 16px 15px; }
@@ -1199,7 +1200,7 @@ h2 {
     .sparkle-one { left: 1%; font-size: 25px; }.sparkle-two { right: 0; font-size: 23px; }
     .memory-copy { padding: 22px 23px 14px; }.memory-copy h2 { font-size: 24px; }
     .memory-caption { font-size: 12px; }.memory-copy .card-secondary { font-size: 9px; }
-    .modal-wish .wish-card { padding: 30px 25px 25px; }.modal-wish h2 { font-size: 28px; }
+    .modal-wish .wish-card { padding:28px 27px 25px; }.modal-wish h2 { font-size:24px; }.modal-wish .card-wish { font-size:13px;line-height:1.95; }
 }
 
 
@@ -1379,16 +1380,12 @@ h2 {
 }
 
 .music-controls { pointer-events:auto; }
-.wish-reveal-tools { min-height:32px;margin:0 0 10px; }
-.wish-reveal-skip { border:1px solid #e8d6e9;border-radius:20px;background:#ffffff94;color:#94749b;padding:7px 12px;font:inherit;font-size:10px;cursor:pointer; }
-.wish-reveal-skip:hover:not(:disabled) { background:#f2e6f5; }
-.wish-reveal-skip:disabled { opacity:.8;cursor:default; }
 .wish-reveal-body { position:relative; }
 .wish-reveal-body .card-wish { margin:0; }
 .wish-layout { visibility:hidden;user-select:none; }
 .wish-animated { position:absolute;inset:0; }
 .wish-cursor { display:inline-block;margin-left:3px;color:#c28aaa;font-size:10px; }
-.wish-signoff { margin:24px 0 0;text-align:center;font-family:'Lora',serif;font-size:clamp(19px,4.5vw,25px);font-style:italic;font-weight:600;color:#bd7b9e;visibility:hidden;opacity:0;transition:opacity .8s ease; }
+.wish-signoff { margin:25px 0 0;padding-top:20px;border-top:1px solid #dfc7d580;text-align:center;font-family:'Lora',serif;font-size:clamp(20px,4.5vw,26px);font-style:italic;font-weight:600;color:#b96d94;visibility:hidden;opacity:0;transition:opacity .8s ease; }
 .wish-signoff.is-visible { visibility:visible;opacity:1; }
 .wish-signoff span { display:inline-block;margin-left:5px;color:#e59eb9; }
 .wish-floating-hearts { position:absolute;inset:0;z-index:1;border-radius:inherit;pointer-events:none;overflow:hidden; }

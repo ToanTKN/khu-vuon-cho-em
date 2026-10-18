@@ -31,9 +31,10 @@ const f = fixture(); let tree = f.render();
 assert.equal(find(tree, 'wish-animated').props.children[0], '');
 f.tick(0); f.tick(120); tree = f.render();
 assert.equal(find(tree, 'wish-animated').props.children[0], 'Chúc ');
-find(tree, 'wish-reveal-skip').props.onClick(); tree = f.render();
+assert.equal(nodes(tree).some(n => n.type === 'button'), false, 'The letter has no reading prompt or notification');
+f.tick(10000); tree = f.render();
 assert.equal(find(tree, 'wish-animated').props.children[0], 'Chúc Thu Thảo zui zẻ 🤭');
-assert.equal(f.frames.size, 0, 'Skipping cancels animation');
+assert.equal(f.frames.size, 0, 'Finishing stops animation');
 const reopened = fixture(); tree = reopened.render();
 assert.equal(find(tree, 'wish-animated').props.children[0], '', 'Opening again starts from the beginning');
 reopened.close(); assert.equal(reopened.frames.size, 0, 'Closing cancels pending work');
@@ -43,4 +44,4 @@ assert.equal(quiet.frames.size, 0, 'Reduced motion shows the complete letter imm
 const finished = fixture(); finished.render(); finished.tick(0); finished.tick(10000); tree = finished.render();
 assert.equal(find(tree, 'wish-reveal-skip'), undefined, 'The reading shortcut disappears without a completion notice');
 assert.equal(finished.frames.size, 0, 'Animation stops once the whole text is visible');
-console.log('PASS: letter reveal, skip, reopen, cleanup, emoji and reduced motion');
+console.log('PASS: letter reveal, no reading prompts, reopen, cleanup, emoji and reduced motion');
