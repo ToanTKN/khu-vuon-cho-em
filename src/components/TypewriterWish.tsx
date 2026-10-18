@@ -25,9 +25,9 @@ export function TypewriterWish({ text }: { text: string }) {
 
   return <div className="wish-reveal">
     <div className="wish-reveal-tools">
-      <button type="button" className="wish-reveal-skip" disabled={complete} onClick={() => setSkipped(true)}>
-        {complete ? 'Đã hiện toàn bộ lời chúc ♥' : 'Hiện toàn bộ lời chúc ♡'}
-      </button>
+      {!complete && <button type="button" className="wish-reveal-skip" onClick={() => setSkipped(true)}>
+        Hiện toàn bộ lời chúc ♡
+      </button>}
     </div>
     <div className="wish-reveal-body">
       <p className="card-wish wish-layout" aria-hidden="true">{text}</p>
