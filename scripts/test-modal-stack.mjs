@@ -19,7 +19,7 @@ function mount(onClose, variant) {
     setAttribute(k, v) { this.attributes[k] = v; }, removeAttribute(k) { delete this.attributes[k]; },
     querySelector() { return this.buttons[0]; }, querySelectorAll() { return this.buttons; } };
   dialog.buttons = [0, 1].map(() => ({ isConnected: true, closest: () => dialog.inert ? dialog : null, focus() { document.activeElement = this; } }));
-  tree.props.children.props.ref.current = dialog;
+  [tree.props.children].flat().find(child => child?.props?.role === 'dialog').props.ref.current = dialog;
   const cleanup = instance.effects[0]();
   return { dialog, cleanup };
 }

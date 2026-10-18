@@ -37,5 +37,8 @@ export function TypewriterWish({ text }: { text: string }) {
       </p>
       <p className="sr-only">{text}</p>
     </div>
+    <p className={`wish-signoff ${complete ? 'is-visible' : ''}`}>
+      Happy Woman'S Day <span aria-hidden="true">♥</span>
+    </p>
   </div>;
 }
