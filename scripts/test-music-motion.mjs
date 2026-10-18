@@ -30,20 +30,25 @@ function runtime(reduced = false) {
     createAnalyser() { return Object.assign(new Node(), { getByteTimeDomainData: a => a.fill(148), getByteFrequencyData: a => a.fill(100) }); }
     createMediaElementSource(track) { this.track = track; return new Node(); }
     createOscillator() { return Object.assign(new Node(), { frequency: {}, start() {}, stop() {} }); }
-    createGain() { const gain = { value: 0, setTargetAtTime(value) { this.value = value; }, setValueAtTime() {}, linearRampToValueAtTime() {}, exponentialRampToValueAtTime() {} }; gains.push(gain); return Object.assign(new Node(), { gain }); }
+    createGain() { const gain = { value: 0, setTargetAtTime(value) { this.value = value; }, cancelScheduledValues() {}, setValueAtTime() {}, linearRampToValueAtTime() {}, exponentialRampToValueAtTime() {} }; gains.push(gain); return Object.assign(new Node(), { gain }); }
     async resume() { this.state = 'running'; } async suspend() { this.state = 'suspended'; } async close() { this.state = 'closed'; }
   }
-  class Audio { static instances = []; constructor() { Audio.instances.push(this); } async play() { this.onplaying?.(); } pause() { this.onpause?.(); } }
+  class Audio { static instances = []; paused = true; ended = false; constructor() { Audio.instances.push(this); } async play() { this.paused = false; this.onplaying?.(); } pause() { this.paused = true; this.onpause?.(); } }
   const scope = { exports: {}, localStorage: { getItem: key => storage.get(key) ?? null, setItem: (key, value) => storage.set(key, value) }, AudioContext, Audio, Uint8Array, performance: { now: () => time },
     setInterval: interval, clearInterval: id => intervals.delete(id),
     requestAnimationFrame: fn => { const id = ++serial; frames.set(id, fn); return id; }, cancelAnimationFrame: id => frames.delete(id),
     ResizeObserver: class { constructor(callback) { resizeCallbacks.push(callback); } observe() {} disconnect() {} },
     document: { hidden: false, createElement: () => { stats.sprites++; return { getContext: context }; }, addEventListener() {}, removeEventListener() {} },
     window: { devicePixelRatio: 1, setInterval: interval },
-    require(name) { if (name === 'react') return react; if (name === 'react/jsx-runtime') return { jsx: (type, props) => ({ type, props }), jsxs: (type, props) => ({ type, props }) }; if (name === 'framer-motion') return { useReducedMotion: () => reduced }; if (name === '../config') return { giftConfig: { musicUrl: '/music/test.mp4' } }; if (name === '../assets') return { assetUrl: p => '.' + p }; throw Error(name); },
+    require(name) { if (name === 'react') return react; if (name === 'react/jsx-runtime') return { jsx: (type, props) => ({ type, props }), jsxs: (type, props) => ({ type, props }) }; if (name === 'framer-motion') return { useReducedMotion: () => reduced }; if (name === '../config') return { giftConfig: { musicUrl: '/music/test.mp4' } }; if (name === '../assets') return { assetUrl: p => '.' + p }; if (name === '../musicPlayer') return loadModule('src/musicPlayer.ts'); throw Error(name); },
   };
+  function loadModule(file) {
+    const exports = {};
+    vm.runInNewContext(ts.transpileModule(fs.readFileSync(file, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022 } }).outputText, { ...scope, exports });
+    return exports;
+  }
   return { state, transforms, frames, intervals, Audio, gains, storage, stats, bounds, resizeCallbacks,
-    load(file) { scope.exports = {}; vm.runInNewContext(ts.transpileModule(fs.readFileSync(file, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022 } }).outputText, scope); return scope.exports; },
+    load: loadModule,
     render(component, props) { cursor = 0; return component(props); },
     mount() { if (state[0]?.current === null) state[0].current = canvas; for (const fn of layouts.splice(0)) fn(); for (const fn of effects.splice(0)) cleanups.push(fn()); },
     tick() { time += 40; [...intervals.values()].forEach(fn => fn()); const pending = [...frames.values()]; frames.clear(); pending.forEach(fn => fn(time)); },
@@ -55,8 +60,7 @@ const signal = { current: { playing: false, analyser: null } };
 const music = runtime(); const { Music } = music.load('src/components/Music.tsx');
 let controls = music.render(Music, { musicMotion: signal });
 let button = controls.props.children[0]; music.mount();
-await button.props.onClick();
-// onClick intentionally returns void, let playback's promise chain settle.
+// Opening the page starts music without pressing the button.
 for (let i = 0; i < 6; i++) await Promise.resolve();
 assert.equal(signal.current.playing, true); assert.ok(signal.current.analyser);
 assert.equal(music.Audio.instances[0].loop, true);

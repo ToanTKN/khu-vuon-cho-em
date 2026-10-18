@@ -1377,3 +1377,9 @@ h2 {
     .modal-clear .clear-actions { gap:10px; }
     .modal-clear .clear-actions>button { width:100%; }
 }
+
+.music-controls { pointer-events:auto; }
+.music-volume { pointer-events:auto; }
+.music-volume input { pointer-events:auto; }
+.music-unlock-hint { max-width:180px;text-align:right;color:#e5cfe2;font-size:9px;line-height:1.6;text-shadow:0 1px 8px #050611; }
+@media(max-width:760px) { .music-unlock-hint { max-width:115px;font-size:8px; } }
