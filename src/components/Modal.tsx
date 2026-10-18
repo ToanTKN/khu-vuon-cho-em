@@ -50,15 +50,6 @@ export function Modal({ children, onClose, label, variant = 'default' }: {
     };
   }, [onClose]);
   return createPortal(<div className={`modal-backdrop ${variant === 'photo' ? 'photo-backdrop' : ''}`} onClick={onClose}>
-    {variant === 'wish' && <div className="wish-floating-hearts" aria-hidden="true">
-      {Array.from({ length: 12 }, (_, index) => <span key={index} style={{
-        left: `${index % 2 === 0 ? 3 + (index % 3) * 3 : 91 + (index % 3) * 2}%`,
-        top: `${14 + Math.floor(index / 2) * 14}%`,
-        fontSize: `${15 + (index % 4) * 5}px`,
-        animationDelay: `${-index * 0.85}s`,
-        animationDuration: `${5 + (index % 4)}s`,
-      }}>♥</span>)}
-    </div>}
     <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
       className={`modal-card modal-${variant}`} ref={ref} role="dialog" aria-modal="true" aria-label={label}
       onClick={event => event.stopPropagation()}>

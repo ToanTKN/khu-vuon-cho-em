@@ -88,6 +88,15 @@ export default function App() {
     {storageFailed && <p className="night-storage-note" role="status">Thiết bị đang chặn lưu trữ; hoa và các kỷ niệm đã ghé chỉ giữ trong lần mở này.</p>}
     {showGift && <Modal label="Tấm thiệp dành cho em" onClose={closeGift} variant="wish">
       <motion.article className="wish-card" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}>
+        <div className="wish-floating-hearts" aria-hidden="true">
+          {Array.from({ length: 14 }, (_, index) => <span key={index} style={{
+            left: `${5 + (index * 29) % 87}%`,
+            top: `${7 + (index * 19) % 88}%`,
+            fontSize: `${14 + (index % 4) * 3}px`,
+            animationDelay: `${-index * 0.85}s`,
+            animationDuration: `${5 + (index % 4)}s`,
+          }}>♥</span>)}
+        </div>
         <div className="card-flower" aria-hidden="true">♥</div>
         <span className="card-eyebrow">MỘT TẤM THIỆP · {config.giftDate}</span>
         <h2>{personal(config.cardTitle)}</h2><p className="card-recipient">Gửi {config.recipient},</p>
