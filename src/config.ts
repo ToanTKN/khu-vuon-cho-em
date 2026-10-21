@@ -4,7 +4,7 @@ export const giftConfig = {
   pronouns: { sender: 'anh', recipient: 'em' },
   gardenHint: 'Chạm ở đâu, hoa nở ở đó.',
   cardTitle: 'Mong những điều dịu dàng đến với Cô ấy',
-  wish: 'Tuy hôm nay mới 18/10, nhưng chúc Thu Thảo 20/10 zui zẻ trước nha, mong rằng trong ngày hôm ấy cô ấy sẽ thật zui, thật hạnh phúc nha. Mong chặng đường sắp tới của Thu Thảo sẽ có nhiều may mắn, mọi chuyện thuận lợi hơn và cô ấy luôn đủ mạnh mẽ để vượt qua tất cả. Mà những lúc thấy mệt thì cứ nghỉ ngơi một chút, không cần lúc nào cũng phải cố gắng đâu.\n\nCũng cảm ơn cô ấy vì vẫn hay đi ăn, đi chơi và kể đủ thứ chuyện cho tui nghe. Mong là những dịp sau tui vẫn được chúc cô ấy, rồi có cớ rủ cô ấy đi chơi nữa 🤭',
+  wish: 'Đúng ra là tặng hôm 18 mà nay 21 luôn rồi hummmmm, thui thì cũng chúc Thu Thảo 20/10 zui zẻ nha, mong rằng trong ngày hôm ấy cô ấy sẽ thật zui, thật hạnh phúc nha. Mong chặng đường sắp tới của Thu Thảo sẽ có nhiều may mắn, mọi chuyện thuận lợi hơn và cô ấy luôn đủ mạnh mẽ để vượt qua tất cả. Mà những lúc thấy mệt thì cứ nghỉ ngơi một chút, không cần lúc nào cũng phải cố gắng đâu.\n\nCũng cảm ơn cô ấy vì vẫn hay đi ăn, đi chơi và kể đủ thứ chuyện cho tui nghe. Mong là những dịp sau tui vẫn được chúc cô ấy, rồi có cớ rủ cô ấy đi chơi nữa 🤭',
   memories: [
     { title: 'Những khoảnh khắc đầu tiên', date: '', image: '', images: ['/image/img_ky_niem/web/1a.jpg', '/image/img_ky_niem/web/1b.jpg'], caption: 'Học chung 3 năm vậy mà được 2 tấm hình, thua luôn ấy' },
     { title: 'Lúc này mới lên Sài Gòn nè', date: '', image: '', images: ['/image/img_ky_niem/web/2a.jpg'], caption: 'Tấm ảnh đầu tiên khi lên Sài Gòn cũng là lần đầu tiên gặp nhau trên đây, bữa này hình như cuối ngày đi chuyển trọ tiếp Cô ấy, haha' },
