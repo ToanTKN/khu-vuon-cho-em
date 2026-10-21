@@ -3,10 +3,10 @@ import { createPortal } from 'react-dom';
 import { Modal } from './Modal';
 
 const steps = [
-  { target: '.keepsake-star', title: 'Mỗi vì sao là một kỷ niệm', text: 'Chạm vào 16 ngôi sao trên bầu trời để mở những tấm ảnh và lời nhắn. Trong mỗi thiệp, vuốt để chuyển ảnh, chạm ảnh để xem lớn. Tim nhỏ đánh dấu sao đã ghé.', top: false },
+  { target: '.keepsake-star', title: 'Mỗi vì sao là một kỷ niệm của chúng ta', text: 'Chạm vào 16 ngôi sao trên bầu trời để mở những tấm ảnh và lời nhắn. Trong mỗi thiệp, vuốt để chuyển ảnh, chạm ảnh để xem lớn. Tim nhỏ đánh dấu sao đã ghé.', top: false },
   { target: '.garden-tools button', title: 'Tự tay gieo một khu vườn', text: 'Chạm vào khoảng trống trong vườn: một bông hoa sẽ nở ngay chỗ ấy. Hoặc bấm “Trồng một bông hoa” bên dưới. “Dọn vườn” giúp trồng lại, vẫn giữ các kỷ niệm.', top: true },
-  { target: '.keepsake-gift', title: 'Có một lá thư dành riêng cho cô ấy', text: 'Chạm vào hộp quà để mở lá thư. Có thể mở bất cứ lúc nào; khi ghé đủ 16 sao, một lời nhắn cuối sẽ xuất hiện và hộp quà sáng lên.', top: true },
-  { target: '.music-controls', title: 'Bật nhạc, để khu vườn cùng đung đưa', text: 'Bấm nút nhạc để bật hoặc tắt, kéo thanh âm lượng để chỉnh tiếng. Hoa và cỏ sẽ đung đưa theo nhạc. Muốn xem lại các bước này, bấm “Hướng dẫn” ở cuối màn hình nhé.', top: false },
+  { target: '.keepsake-gift', title: 'Có một lá thư dành riêng cho Cô ấy, nhớ mở ra nhé', text: 'Chạm vào hộp quà để mở lá thư. Có thể mở bất cứ lúc nào; khi ghé đủ 16 sao, một lời nhắn cuối sẽ xuất hiện và hộp quà sáng lên.', top: true },
+  { target: '.music-controls', title: 'Bật nhạc, để khu vườn cùng đông đưa theo nhạc nèo!!!', text: 'Bấm nút nhạc để bật hoặc tắt, kéo thanh âm lượng để chỉnh tiếng. Hoa và cỏ sẽ đung đưa theo nhạc. Muốn xem lại các bước này, bấm “Hướng dẫn” ở cuối màn hình nhé.', top: false },
 ];
 
 export function GardenGuide({ onClose }: { onClose: () => void }) {
