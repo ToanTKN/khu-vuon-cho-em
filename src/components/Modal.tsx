@@ -15,7 +15,7 @@ function syncDialogs() {
 }
 
 export function Modal({ children, onClose, label, variant = 'default' }: {
-  children: ReactNode; onClose: () => void; label: string; variant?: 'default' | 'memory' | 'wish' | 'photo' | 'clear';
+  children: ReactNode; onClose: () => void; label: string; variant?: 'default' | 'memory' | 'wish' | 'photo' | 'clear' | 'guide';
 }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {

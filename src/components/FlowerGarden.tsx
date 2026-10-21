@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import type { MusicMotionRef } from '../musicMotion';
+import { createWildGrass, drawWildGrass, type GrassBlade } from '../wildGrass';
 export type PlantedFlower = { id: number; x: number; y: number; size: number; palette: number };
 const palettes = [
   ['#fff1f8', '#f6b4d2', '#dc86ae', '#bd5f8b'], // Rose milk
@@ -104,6 +105,7 @@ export function FlowerGarden({ flowers, onPlant, musicMotion }: { flowers: Plant
     const frequencies = new Uint8Array(512);
     const births = new Map<number, number>();
     const blossoms = new Map<number, HTMLCanvasElement>();
+    let grass: GrassBlade[] = [];
 
     function synchronize(animate: boolean) {
       const now = performance.now();
@@ -145,6 +147,7 @@ export function FlowerGarden({ flowers, onPlant, musicMotion }: { flowers: Plant
       strength += (target - strength) * (1 - Math.exp(-dt * (target > strength ? 9 : 3)));
       phase += dt * (1.8 + bass * 1.2);
       ctx.clearRect(0, 0, width, height);
+      drawWildGrass(ctx, grass, height, phase, reduced ? 0 : strength, false);
       let growing = false;
       flowersRef.current.forEach(f => {
         const t = Math.min(1, (time - (births.get(f.id) ?? time)) / 650);
@@ -155,7 +158,8 @@ export function FlowerGarden({ flowers, onPlant, musicMotion }: { flowers: Plant
         if (blossom) drawFlower(ctx, f, width, height,
           reduced ? 1 : 1 - Math.pow(1 - Math.max(0.03, t), 3), sway, blossom);
       });
-      if (growing || (flowersRef.current.length > 0 && (moving || strength > .001))) frame = requestAnimationFrame(render);
+      drawWildGrass(ctx, grass, height, phase, reduced ? 0 : strength, true);
+      if (growing || moving || strength > .001) frame = requestAnimationFrame(render);
     }
     function wake() {
       cancelAnimationFrame(frame);
@@ -169,6 +173,7 @@ export function FlowerGarden({ flowers, onPlant, musicMotion }: { flowers: Plant
       if (rect.width <= 0 || rect.height <= 0) return;
       cancelAnimationFrame(frame);
       width = rect.width; height = rect.height; pixelRatio = ratio;
+      grass = createWildGrass(width, height);
       surface.width = Math.round(width * ratio); surface.height = Math.round(height * ratio);
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
       blossoms.clear(); synchronize(false);

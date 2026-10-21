@@ -40,7 +40,7 @@ function runtime(reduced = false) {
     ResizeObserver: class { constructor(callback) { resizeCallbacks.push(callback); } observe() {} disconnect() {} },
     document: { hidden: false, createElement: () => { stats.sprites++; return { getContext: context }; }, addEventListener() {}, removeEventListener() {} },
     window: { devicePixelRatio: 1, setInterval: interval },
-    require(name) { if (name === 'react') return react; if (name === 'react/jsx-runtime') return { jsx: (type, props) => ({ type, props }), jsxs: (type, props) => ({ type, props }) }; if (name === 'framer-motion') return { useReducedMotion: () => reduced }; if (name === '../config') return { giftConfig: { musicUrl: '/music/test.mp4' } }; if (name === '../assets') return { assetUrl: p => '.' + p }; if (name === '../musicPlayer') return loadModule('src/musicPlayer.ts'); throw Error(name); },
+    require(name) { if (name === 'react') return react; if (name === 'react/jsx-runtime') return { jsx: (type, props) => ({ type, props }), jsxs: (type, props) => ({ type, props }) }; if (name === 'framer-motion') return { useReducedMotion: () => reduced }; if (name === '../config') return { giftConfig: { musicUrl: '/music/test.mp4' } }; if (name === '../assets') return { assetUrl: p => '.' + p }; if (name === '../wildGrass') return loadModule('src/wildGrass.ts'); if (name === '../musicPlayer') return loadModule('src/musicPlayer.ts'); throw Error(name); },
   };
   function loadModule(file) {
     const exports = {};
@@ -104,5 +104,22 @@ const still = runtime(true); const component = still.load('src/components/Flower
 signal.current.playing = true;
 still.render(component.FlowerGarden, { flowers: component.initialFlowers(), onPlant() {}, musicMotion: signal }); still.mount(); still.tick();
 assert.ok(still.transforms.every(t => t[2] === 0), 'Reduced motion should keep flowers still'); assert.equal(still.frames.size, 0); still.unmount();
-console.log('PASS: stable planting, incremental blossoms, continuous sway, immediate resize, persistent volume, playback, audio-driven sway, settling, restart, reduced motion and cleanup');
+const grassTest = runtime();
+const { createWildGrass, drawWildGrass } = grassTest.load('src/wildGrass.ts');
+const blades = createWildGrass(1200, 800);
+assert.deepEqual(blades, createWildGrass(1200, 800), 'Grass placement stays stable between redraws');
+assert.ok(new Set(blades.map(b => Math.round(b.height))).size > 50, 'Natural grass uses varied blade heights');
+function grassCurves(strength, phase) {
+  const curves = [];
+  const brush = new Proxy({}, { get: (_, key) => key === 'bezierCurveTo' ? (...values) => curves.push(values) : () => {}, set: () => true });
+  drawWildGrass(brush, blades, 800, phase, strength, true);
+  return curves;
+}
+assert.deepEqual(grassCurves(0, 0), grassCurves(0, 5), 'Grass rests when music is off');
+assert.notDeepEqual(grassCurves(.8, 0), grassCurves(.8, 2), 'Music energy moves the grass tips');
+const empty = runtime(); const emptyGarden = empty.load('src/components/FlowerGarden.tsx');
+empty.render(emptyGarden.FlowerGarden, { flowers: [], onPlant() {}, musicMotion: signal }); empty.mount(); empty.tick();
+assert.ok(empty.frames.size > 0, 'Grass keeps following music even after clearing flowers'); empty.unmount();
+console.log('PASS: stable planting, audio-driven flowers and grass, persistent volume, settling, resize, reduced motion and cleanup');
+
 

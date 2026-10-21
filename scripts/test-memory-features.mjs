@@ -31,7 +31,7 @@ function fixture(storage = new Map()) {
       if (name === 'framer-motion') return { MotionConfig: 'MotionConfig', motion: { article: 'article' } };
       if (name.endsWith('/Modal')) return { Modal: 'Modal' };
       if (name.endsWith('/FlowerGarden')) return { FlowerGarden: 'FlowerGarden', initialFlowers: () => [{ id: 0, x: .5, y: .5, size: 1, palette: 0 }] };
-      if (/\/(MemorySky|Fireflies|KeepsakeGift|Music|MemoryOrnament)$/.test(name)) { const n = name.split('/').at(-1); return { [n]: n }; }
+      if (/\/(MemorySky|Fireflies|KeepsakeGift|Music|MemoryOrnament|GardenGuide)$/.test(name)) { const n = name.split('/').at(-1); return { [n]: n }; }
       const target = path.resolve(path.dirname(file), name);
       return load(fs.existsSync(target + '.ts') ? target + '.ts' : target + '.tsx');
     };
@@ -66,6 +66,16 @@ const reloaded = fixture(f.storage); const reloadedApp = reloaded.render(reloade
 assert.equal(find(reloadedApp, n => n.type === 'KeepsakeGift').props.highlighted, true, 'Completion persists after reload');
 const fresh = fixture(); const freshApp = fresh.render(fresh.load('src/App.tsx').default);
 assert.equal(typeof find(freshApp, n => n.type === 'KeepsakeGift').props.onOpen, 'function', 'Gift remains available at zero visits');
+assert.ok(find(freshApp, n => n.type === 'GardenGuide'), 'First visit shows the guide');
+find(freshApp, n => n.type === 'GardenGuide').props.onClose();
+const freshComponent = fresh.load('src/App.tsx').default;
+let guidedApp = fresh.render(freshComponent);
+assert.equal(find(guidedApp, n => n.type === 'GardenGuide'), undefined);
+const returning = fixture(fresh.storage);
+assert.equal(find(returning.render(returning.load('src/App.tsx').default), n => n.type === 'GardenGuide'), undefined, 'Closing the guide is remembered after reload');
+find(guidedApp, n => n.props?.className?.includes('guide-button')).props.onClick();
+guidedApp = fresh.render(freshComponent);
+assert.ok(find(guidedApp, n => n.type === 'GardenGuide'), 'The footer can reopen the guide');
 
 const album = fixture(); const { MemoryGallery } = album.load('src/components/MemoryGallery.tsx');
 const props = { photos: ['/1.jpg', '/2.jpg', '/3.jpg'], title: 'Kỷ niệm' };

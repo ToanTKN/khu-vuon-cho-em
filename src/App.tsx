@@ -8,6 +8,7 @@ import { KeepsakeGift } from './components/KeepsakeGift';
 import { Modal } from './components/Modal';
 import { Music } from './components/Music';
 import { TypewriterWish } from './components/TypewriterWish';
+import { GardenGuide } from './components/GardenGuide';
 
 import type { MusicMotion } from './musicMotion';
 import { readVisited } from './memoryProgress';
@@ -37,6 +38,13 @@ export default function App() {
   const [showClear, setShowClear] = useState(false);
   const [storageFailed, setStorageFailed] = useState(false);
   const [announcement, setAnnouncement] = useState('');
+  const [showGuide, setShowGuide] = useState(() => {
+    try { return localStorage.getItem('your-night-garden-guide-v1') !== 'seen'; } catch { return true; }
+  });
+  const closeGuide = useCallback(() => {
+    setShowGuide(false);
+    try { localStorage.setItem('your-night-garden-guide-v1', 'seen'); } catch { /* The guide can still be closed without storage. */ }
+  }, []);
   const closeGift = useCallback(() => setShowGift(false), []);
   const closeClear = useCallback(() => setShowClear(false), []);
   useEffect(() => {
@@ -82,10 +90,12 @@ export default function App() {
           <span aria-hidden="true">♥</span> Trồng một bông hoa
         </button>
         <button className="quiet-button clear-button" onClick={() => setShowClear(true)}>Dọn vườn</button>
+        <button className="quiet-button guide-button" onClick={() => setShowGuide(true)}>Hướng dẫn</button>
       </div><span className="garden-count">{garden.flowers.length} bông hoa đang nở</span>
     </footer>
     <div className="sr-only" role="status" aria-live="polite">{announcement}</div>
     {storageFailed && <p className="night-storage-note" role="status">Thiết bị đang chặn lưu trữ; hoa và các kỷ niệm đã ghé chỉ giữ trong lần mở này.</p>}
+    {showGuide && <GardenGuide onClose={closeGuide} />}
     {showGift && <Modal label="Tấm thiệp dành cho em" onClose={closeGift} variant="wish">
       <motion.article className="wish-card" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}>
         <div className="wish-floating-hearts" aria-hidden="true">
